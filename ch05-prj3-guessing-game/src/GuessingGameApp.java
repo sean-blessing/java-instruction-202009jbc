@@ -13,20 +13,53 @@ public class GuessingGameApp {
 		while (choice.equalsIgnoreCase("y")) {
 			//* continue loop starts here
 			// Start a game - generate random number (theNumber)
-			// Display the "I'm thinking..." message
-			// - initialize the count variable = 0
+			int theNumber = (int)(Math.random()*100) + 1;
 			
+			System.out.println("I'm thinking of a number from 1 to 100."
+					+ "\nTry to guess it.");
+			int count = 0;
+			int guess = 0;
+			while (guess!=theNumber) {
 				//* 'win' loop starts 'guess == theNumber'???
-				// prompt user input (guess)
-				// - validate user entry:  int, within 1 to 100
+				guess = getIntWithinRange("Enter Number: ", sc,1,100);
+				count++;
 				
 				// biz logic 
 				// - compare guess vs theNumber
-				// - determine how far away
+				int diff = theNumber - guess;
 				// - display the appropriate message: win, tl, th, wtl, wth
+				String message = "";
+				if (diff > 10) {
+					message += "Way too low!  Guess again.";
+				}
+				else if (diff < -10) {
+					message += "Way too high!  Guess again.";
+				}
+				else if (diff > 0) {
+					message += "Too low!  Guess again.";
+				}
+				else if (diff < 0) {
+					message += "Too high!  Guess again.";
+				}
+				else {
+					// win
+					message += "You got it in "+count+" tries!\n";
+					if (count<=3) {
+						message +="Great work! You're a mathematical wizard!!\n";
+					}
+					else if (count <=7) {
+						message +="Not bad.  You've got some potential.\n";
+					}
+					else {
+						message += "What took you so long?  Maybe you should take some lessons.\n";
+					}
+				}
+				System.out.println(message+"\n");
 				// - display the 'win' message: in requirements doc
 				//* 'win' loop ends
+			}
 			//* continue loop ends
+			sc.nextLine();
 			choice = getChoiceString("Try again? ", sc, "y", "n");
 		}
 		System.out.println("Bye!");
