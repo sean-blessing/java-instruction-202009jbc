@@ -24,6 +24,19 @@ public class Software extends Product {
 	public String toString() {
 		return "Software [version=" + version + ", toString()=" + super.toString() + "]";
 	}
+
+	// p. 281
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Software) {
+			Software software2 = (Software)obj;
+			if (this.getCode().equalsIgnoreCase(software2.getCode())) {
+				return true;
+			}
+			
+		}
+		return false;
+	}
 	
 	
 	
