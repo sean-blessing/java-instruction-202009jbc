@@ -1,20 +1,31 @@
+package business;
 
 public class Actor {
+	private int id;
 	private String firstName;
 	private String lastName;
 	private String gender;
-	private String birthDay;
+	private String birthDate;
 	
 	public Actor() {
 		super();
 	}
 	
-	public Actor(String firstName, String lastName, String gender, String birthDate) {
+	public Actor(int id, String firstName, String lastName, String gender, String birthDate) {
 		super();
+		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.gender = gender;
-		this.birthDay = birthDate;
+		this.birthDate = birthDate;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getFirstName() {
@@ -42,16 +53,16 @@ public class Actor {
 	}
 
 	public String getBirthDate() {
-		return birthDay;
+		return birthDate;
 	}
 
 	public void setBirthDate(String birthDate) {
-		this.birthDay = birthDate;
+		this.birthDate = birthDate;
 	}
 	
 	public String displaySummary() {
-		String str = firstName +" "+lastName+", "
-				+gender+", born "+birthDay;
+		String str = "id: "+ id + ", "+firstName +" "+lastName+", "
+				+gender+", born "+birthDate;
 		return str;
 	}
 
