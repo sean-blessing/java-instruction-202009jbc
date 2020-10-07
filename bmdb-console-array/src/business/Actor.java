@@ -62,7 +62,8 @@ public class Actor {
 	
 	public String displaySummary() {
 		String str = "id: "+ id + ", "+firstName +" "+lastName+", "
-				+gender+", born "+birthDate;
+				+ (gender.equalsIgnoreCase("M") ? "Male" : "Female") 
+				+ ", born "+birthDate;
 		return str;
 	}
 
