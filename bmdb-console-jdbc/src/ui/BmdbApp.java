@@ -31,7 +31,8 @@ public class BmdbApp {
 			System.out.println("2 - List Actors");
 			System.out.println("3 - Find Actor");
 			System.out.println("4 - Delete Actor");
-			System.out.println("5 - Add Movie");
+			System.out.println("5 - Find Actors for Last Name");
+			System.out.println("6 - Add Movie");
 			System.out.println("9 - Exit");
 			System.out.println();
 			
@@ -96,6 +97,13 @@ public class BmdbApp {
 				System.out.println();
 				break;
 			case 5:
+				// find actors for last name
+				// prompt for last name
+				// call List<Actor> actorDB.findByLastName(String lName)
+				// - findByLastName - should be able to base this on getAll 
+				// print the list of actors
+				break;
+			case 6:
 				// add Movie
 				System.out.println("Add a Movie:  ");
 				String t = Console.getLine("Title? ");

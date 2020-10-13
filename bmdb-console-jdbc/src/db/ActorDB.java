@@ -11,7 +11,7 @@ public class ActorDB implements DAO<Actor> {
 	
 	//p. 677
 	private Connection getConnection() throws SQLException {
-		String dbURL = "jdbc:mysql://localhost:3306/bmdb";
+		String dbURL = "jdbc:mysql://localhost:3306/bmdb?useSSL=false";
 		String username = "bmdb_user";
 		String password = "sesame";
 		
