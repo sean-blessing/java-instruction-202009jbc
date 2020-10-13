@@ -76,15 +76,14 @@ public class ActorDB implements DAO<Actor> {
 	@Override
 	public boolean add(Actor a) {
 		boolean success = false;
-		String sql = "insert into actor values "
-				+ "(?,?,?,?,?)";
+		String sql = "insert into actor (FirstName,LastName,Gender,BirthDate) " + 
+				"values (?, ?, ?, ?)";
 		try (Connection conn = getConnection();
 			 PreparedStatement ps = conn.prepareStatement(sql)) {
-			ps.setInt(1, a.getId());
-			ps.setString(2, a.getFirstName());
-			ps.setString(3, a.getLastName());
-			ps.setString(4, a.getGender());
-			ps.setString(5, a.getBirthDate().toString());
+			ps.setString(1, a.getFirstName());
+			ps.setString(2, a.getLastName());
+			ps.setString(3, a.getGender());
+			ps.setString(4, a.getBirthDate().toString());
 			ps.executeUpdate();
 			success = true;
 		} catch (SQLException e) {

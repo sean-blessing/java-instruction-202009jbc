@@ -30,7 +30,8 @@ public class BmdbApp {
 			System.out.println("1 - Add Actor");
 			System.out.println("2 - List Actors");
 			System.out.println("3 - Find Actor");
-			System.out.println("4 - Add Movie");
+			System.out.println("4 - Delete Actor");
+			System.out.println("5 - Add Movie");
 			System.out.println("9 - Exit");
 			System.out.println();
 			
@@ -41,14 +42,13 @@ public class BmdbApp {
 			case 1:
 				//add Actor
 				System.out.println("Add an Actor:  ");
-				int id = Console.getInt("ID? ");
 				String fn = Console.getString("First Name? ");
 				String ln = Console.getString("Last Name? ");
 				String g = Console.getString("Gender? ");
 				String bdStr = Console.getString("Birth Date? ");
 				LocalDate bd = LocalDate.parse(bdStr);
 				
-				Actor actor = new Actor(id, fn,ln,g,bd);
+				Actor actor = new Actor(fn,ln,g,bd);
 				actorDAO.add(actor);
 				System.out.println("Actor Added!");
 				System.out.println(actor.displaySummary());
@@ -66,17 +66,36 @@ public class BmdbApp {
 				break;
 			case 3:
 				// Find Actor
-				System.out.println("*** Not yet implemented *** ");
-//				id = Console.getInt("ID? ");
-//				for (Actor a: actors) {
-//					if (a!=null && a.getId()==id) {
-//						System.out.println("Actor found:!");
-//						System.out.println(a.displaySummary());
-//					}
-//				}
+				System.out.println("Find an Actor by ID:");
+				int id = Console.getInt("ID? ");
+				Actor a = actorDAO.get(id);
+				if (a != null) {
+					System.out.println(a.displaySummary());
+				}
+				else {
+					System.out.println("No actor found for id: "+id);
+				}
 				System.out.println();
 				break;
 			case 4:
+				// delete actor
+				System.out.println("Delete an actor by ID:");
+				id = Console.getInt("ID? ");
+				a = actorDAO.get(id);
+				if (a != null) {
+					if (actorDAO.delete(a)) {
+						System.out.println("Delete successful!");
+					}
+					else {
+						System.out.println("Error deleting actor.");
+					}
+				}
+				else {
+					System.out.println("No actor found for id: "+id);
+				}
+				System.out.println();
+				break;
+			case 5:
 				// add Movie
 				System.out.println("Add a Movie:  ");
 				String t = Console.getLine("Title? ");
