@@ -40,7 +40,13 @@ public class StreamProcessingApp {
 				.map(Contact::getName)
 				.collect(Collectors.toList());
 		contactNames.stream().forEach(System.out::println);
-				
+		
+		// map & reduce p. 721
+		System.out.println("reduce the list down to a single string...");
+		String csv = contacts.stream().map(Contact::getName)
+				.reduce("", (a,b) -> a + b + ", ");
+		csv = csv.substring(0,csv.length()-2);
+		System.out.println("All contacts: "+csv);
 		
 		System.out.println("bye");
 
