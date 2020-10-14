@@ -40,6 +40,32 @@ public class ActorDB implements DAO<Actor> {
 	}
 
 	@Override
+	public List<Actor> findByLastName(String lName) {
+		List<Actor> actors = new ArrayList<>();
+		//p. 679
+		
+		String sql = "SELECT * FROM actor" + 
+				" where LastName = ?";
+		try (Connection conn = getConnection();
+			 PreparedStatement ps = conn.prepareStatement(sql);
+			 ) {
+			ps.setString(1, lName);
+			ResultSet rs = ps.executeQuery();
+			//p. 681 - process result set
+			while (rs.next()) {
+				Actor a = getActorFromResultSet(rs);
+				actors.add(a);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("Error getting all actors!");
+			e.printStackTrace();
+			actors = null;
+		}
+		return actors;
+	}
+
+	@Override
 	public List<Actor> getAll() {
 		List<Actor> actors = new ArrayList<>();
 		//p. 679
@@ -47,7 +73,7 @@ public class ActorDB implements DAO<Actor> {
 		String sql = "select * from actor;";
 		try (Connection conn = getConnection();
 			 PreparedStatement ps = conn.prepareStatement(sql);
-			 ResultSet rs = ps.executeQuery(sql);) {
+			 ResultSet rs = ps.executeQuery();) {
 			//p. 681 - process result set
 			while (rs.next()) {
 				Actor a = getActorFromResultSet(rs);

@@ -108,4 +108,10 @@ public class ActorTextFile implements DAO<Actor> {
 		}
 	}
 
+	@Override
+	public List<Actor> findByLastName(String lName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

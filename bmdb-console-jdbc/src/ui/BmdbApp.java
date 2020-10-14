@@ -98,10 +98,22 @@ public class BmdbApp {
 				break;
 			case 5:
 				// find actors for last name
+				System.out.println("Search actors by last name:");
 				// prompt for last name
+				String lName = Console.getRequiredString("Last Name? ");
 				// call List<Actor> actorDB.findByLastName(String lName)
-				// - findByLastName - should be able to base this on getAll 
+				// - findByLastName - should be able to base this on getAll
+				List<Actor> actors = actorDAO.findByLastName(lName);
 				// print the list of actors
+				System.out.println("Actors:");
+				if (actors.size()==0) {
+					System.out.println("No actors w/ last name: "+lName);
+				}
+				else {
+					for (Actor act: actors) {
+						System.out.println(act.displaySummary());
+					}
+				}
 				break;
 			case 6:
 				// add Movie
