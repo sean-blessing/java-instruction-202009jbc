@@ -3,6 +3,7 @@ package business;
 import java.time.LocalDate;
 
 public class Actor {
+
 	private int id;
 	private String firstName;
 	private String lastName;
@@ -77,4 +78,9 @@ public class Actor {
 		return str;
 	}
 
+	@Override
+	public String toString() {
+		return "Actor [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", gender=" + gender
+				+ ", birthDate=" + birthDate + "]";
+	}
 }
